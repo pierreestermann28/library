@@ -1,0 +1,12 @@
+.authorlist {
+  background-color: lightgrey;
+  margin: 10px;
+  width: 30%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20%;
+}
+.headers {
+  font-weight: bold;
+  display: block;
+}
