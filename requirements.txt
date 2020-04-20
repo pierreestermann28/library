@@ -1,0 +1,7 @@
+gunicorn
+Django 
+psycopg2
+graphene-django
+graphene
+django-cors-headers
+whitenoise
