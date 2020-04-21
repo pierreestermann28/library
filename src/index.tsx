@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql/',
-});
+  uri: 'https://library28.herokuapp.com/graphql/',
+})
 
 
 ReactDOM.render(
@@ -22,7 +22,7 @@ ReactDOM.render(
   </ApolloProvider>
   ,
   document.getElementById('root')
-);
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
