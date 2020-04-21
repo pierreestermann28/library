@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import dj_database_url
 import dotenv
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'graphene_django',
     'ebooks',
@@ -126,16 +128,21 @@ USE_L10N = True
 USE_TZ = True
 
 
+# we whitelist localhost:3000 because that's where frontend will be served
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
-]
-STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = []
+STATIC_ROOT= os.path.join(BASE_DIR, 'build', 'static')
+
+""" os.path.join(BASE_DIR, 'build/static') """
+
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# we whitelist localhost:3000 because that's where frontend will be served
-CORS_ORIGIN_ALLOW_ALL = True
+
