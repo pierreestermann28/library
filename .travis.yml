@@ -3,13 +3,20 @@ language: python
 python:
   - "3.8"
 
-services: sqlite
+services: postgresql
 
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=backend.settings
+  - export PYTHONPATH=$HOME/builds/pierreestermann28/library
+  - export PIP_USE_MIRRORS=true
 
 #commands to install dependencies
 install:
   - pip install -r requirements.txt
 
+before_script:
+  - psql -c "CREATE DATABASE mydb;" -U postgres
 
 #command to run the test suite
 script:
