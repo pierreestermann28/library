@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - "3.8"
+
+services: sqlite
+
+
+#commands to install dependencies
+install:
+  - pip install -r requirements.txt
+
+
+#command to run the test suite
+script:
+  - python manage.py test
