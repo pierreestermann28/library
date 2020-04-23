@@ -42,7 +42,7 @@ class AuthorModelTest(TestCase):
         author = Author.objects.get(id=1)
         max_length = author._meta.get_field('email').max_length
         self.assertEquals(max_length, 30)
-
+""" 
 class AuthorSchemaTestCase(GraphQLTestCase):
     # Here you need to inject your test case's schema
     @classmethod
@@ -162,4 +162,4 @@ class AuthorSchemaTestCase(GraphQLTestCase):
         self.assertEqual('baraka', new_last_name)
         self.assertEqual('barakafoo2@hotmail.fr', new_email)
     
-   
+    """
