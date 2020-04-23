@@ -41,7 +41,9 @@ class AuthorModelTest(TestCase):
     def test_email_max_length(self):
         author = Author.objects.get(id=1)
         max_length = author._meta.get_field('email').max_length
-        self.assertEquals(max_length, 30)Ò
+        self.assertEquals(max_length, 30)
+
+
 class AuthorSchemaTestCase(GraphQLTestCase):
     # Here you need to inject your test case's schema
     @classmethod
@@ -51,10 +53,6 @@ class AuthorSchemaTestCase(GraphQLTestCase):
     
     GRAPHQL_SCHEMA = schema
 
-    def test (self):
-        pass
-
-    """
     def test_author_query(self):
         response = self.query(
             '''
@@ -74,95 +72,3 @@ class AuthorSchemaTestCase(GraphQLTestCase):
 
         # This validates the status code and if you get errors
         self.assertResponseNoErrors(response)
-
-
-     def test_author_query_with_id(self):
-        response = self.query(
-            '''
-            query author($id: Int!){
-                author(id: $id) {
-                    email
-                }
-            }
-            ''',
-            op_name='author',
-            variables={'id':1}
-        )
-
-        content = json.loads(response.content)
-        # This validates the status code and if you get errors
-        self.assertResponseNoErrors(response)
-    
-    def test_create_author(self):
-        response = self.query(
-            '''
-            mutation createAuthor($email: String!, $firstName: String!,$lastName: String!) {
-                createAuthor(email: $email, firstName: $firstName, lastName: $lastName) {
-                    author {
-                        email
-                    }
-                }
-            }
-            ''',
-            op_name='createAuthor',
-            variables={'firstName': 'foo', 'lastName': 'bar', 'email': 'p.estermann@hotmail.fr'}
-        )
-        content = json.loads(response.content)
-        data = content['data']['createAuthor']['author']
-        # This validates the status code and if you get errors
-        self.assertResponseNoErrors(response) 
-        self.assertEqual(data['email'], 'p.estermann@hotmail.fr')
-
-    def test_create_author_with_wrong_email(self):
-        response = self.query(
-            '''
-            mutation createAuthor($email: String!, $firstName: String!,$lastName: String!) {
-                createAuthor(email: $email, firstName: $firstName, lastName: $lastName) {
-                    author {
-                        email
-                    }
-                }
-            }
-            ''',
-            op_name='createAuthor',
-            variables={'firstName': 'foo', 'lastName': 'bar', 'email': 'pestermannhotmail.fr'}
-        )
-        content = json.loads(response.content)
-        data = content['data']['createAuthor']['author']
-        # This validates the status code and if you get errors
-        self.assertResponseNoErrors(response) 
-        self.assertEqual(data, None)
-
-    
-    def test_update_author_with_wrong_email(self):
-        response = self.query(
-            '''
-            mutation updateAuthor($id: Int!, $email: String, $firstName: String,$lastName: String) {
-                updateAuthor(id: $id, email: $email, firstName: $firstName, lastName: $lastName) {
-                    author {
-                        id
-                        firstName
-                        lastName
-                        email
-                    }
-                }
-            }
-            ''',
-            op_name='updateAuthor',
-            variables={'id': 1, 'firstName': 'foo2', 'lastName': 'baraka', 'email': 'barakafoo2@hotmail.fr'}
-        )
-        new_last_name = 'baraka'
-        content = json.loads(response.content)
-        indice = content['data']['updateAuthor']['author']['id']
-        new_first_name = content['data']['updateAuthor']['author']['firstName']
-        new_last_name = content['data']['updateAuthor']['author']['lastName']
-        new_email = content['data']['updateAuthor']['author']['email']
-        
-        # This validates the status code and if you get errors
-        self.assertResponseNoErrors(response) 
-        self.assertEqual('1', indice)
-        self.assertEqual('foo2', new_first_name)
-        self.assertEqual('baraka', new_last_name)
-        self.assertEqual('barakafoo2@hotmail.fr', new_email)
-    
-  """
