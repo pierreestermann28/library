@@ -66,11 +66,7 @@ class UpdateAuthor(graphene.Mutation):
 
     
     def mutate(self, info, id, **args):
-        print(info, args)
-        
-           
         ok = False
-        print(id)
         author_instance = Author.objects.get(pk=id)
         if author_instance:
             ok = True
@@ -146,7 +142,6 @@ class Query(graphene.ObjectType):
             return Author.objects.all()
 
     def resolve_book(self, info, **kwargs):
-        print(kwargs)
         id =kwargs.get('id')
 
         if id is not None:
