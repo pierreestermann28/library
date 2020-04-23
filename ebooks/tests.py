@@ -122,7 +122,7 @@ class AuthorSchemaTestCase(GraphQLTestCase):
         self.assertEqual(data, None)
     
 
-    """ 
+    
     def test_update_author_with_wrong_email(self):
         response = self.query(
             '''
@@ -138,7 +138,7 @@ class AuthorSchemaTestCase(GraphQLTestCase):
             }
             ''',
             op_name='updateAuthor',
-            variables={'id': 1, 'firstName': 'foo2', 'lastName': 'baraka', 'email': 'barakafoo2@hotmail.fr'}
+            variables={'id': 2, 'firstName': 'foo2', 'lastName': 'baraka', 'email': 'barakafoo2@hotmail.fr'}
         )
         content = json.loads(response.content)
         indice = content['data']['updateAuthor']['author']['id']
@@ -164,9 +164,9 @@ class AuthorSchemaTestCase(GraphQLTestCase):
             }
             ''',
             op_name='author',
-            variables={'id':1}
+            variables={'id':2}
         )
 
         content = json.loads(response.content)
         # This validates the status code and if you get errors
-        self.assertResponseNoErrors(response)  """
+        self.assertResponseNoErrors(response)  
