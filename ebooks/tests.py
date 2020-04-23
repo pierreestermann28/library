@@ -9,7 +9,7 @@ class AuthorModelTest(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
         obj = Author.objects.create(first_name='Big', last_name='Bob', email = 'Bigbob@hotmail.fr')
-        print(obj.id)
+        obj.save()
 
     """Test des champs label"""
     def test_first_name_label(self):
@@ -148,7 +148,7 @@ class AuthorSchemaTestCase(GraphQLTestCase):
         
         # This validates the status code and if you get errors
         self.assertResponseNoErrors(response) 
-        self.assertEqual('1', indice)
+        self.assertEqual('2', indice)
         self.assertEqual('foo2', new_first_name)
         self.assertEqual('baraka', new_last_name)
         self.assertEqual('barakafoo2@hotmail.fr', new_email)
