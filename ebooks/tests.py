@@ -117,8 +117,16 @@ class AuthorSchemaTestCase(GraphQLTestCase):
         # This validates the status code and if you get errors
         self.assertResponseNoErrors(response) 
         self.assertEqual(data, None)
-
     
+    def test_database(self):
+        all = Author.objects.all()
+        autheur = Author.objects.get(pk=1)
+        print(all)
+        print(autheur.first_name)
+        print(autheur.first_name)
+        pass
+
+    """ 
     def test_update_author_with_wrong_email(self):
         response = self.query(
             '''
@@ -165,4 +173,4 @@ class AuthorSchemaTestCase(GraphQLTestCase):
 
         content = json.loads(response.content)
         # This validates the status code and if you get errors
-        self.assertResponseNoErrors(response) 
+        self.assertResponseNoErrors(response)  """
