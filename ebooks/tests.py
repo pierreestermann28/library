@@ -8,7 +8,8 @@ class AuthorModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Author.objects.create(first_name='Big', last_name='Bob', email = 'Bigbob@hotmail.fr')
+        obj = Author.objects.create(first_name='Big', last_name='Bob', email = 'Bigbob@hotmail.fr')
+        print(obj.id)
 
     """Test des champs label"""
     def test_first_name_label(self):
@@ -49,7 +50,8 @@ class AuthorSchemaTestCase(GraphQLTestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Author.objects.create(first_name='Big', last_name='Bob', email = 'Bigbob@hotmail.fr')
+        obj = Author.objects.create(first_name='Big', last_name='Bob', email = 'Bigbob@hotmail.fr')
+        obj.save()
     
     GRAPHQL_SCHEMA = schema
 
@@ -132,7 +134,7 @@ class AuthorSchemaTestCase(GraphQLTestCase):
             }
             ''',
             op_name='updateAuthor',
-            variables={'id': 0, 'firstName': 'foo2', 'lastName': 'baraka', 'email': 'barakafoo2@hotmail.fr'}
+            variables={'id': 1, 'firstName': 'foo2', 'lastName': 'baraka', 'email': 'barakafoo2@hotmail.fr'}
         )
         content = json.loads(response.content)
         indice = content['data']['updateAuthor']['author']['id']
@@ -158,7 +160,7 @@ class AuthorSchemaTestCase(GraphQLTestCase):
             }
             ''',
             op_name='author',
-            variables={'id':0}
+            variables={'id':1}
         )
 
         content = json.loads(response.content)
