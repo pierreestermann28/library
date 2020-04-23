@@ -148,7 +148,7 @@ class AuthorSchemaTestCase(GraphQLTestCase):
         self.assertEqual('barakafoo2@hotmail.fr', new_email)
     
 
-     def test_author_query_with_id(self):
+    def test_author_query_with_id(self):
         response = self.query(
             '''
             query author($id: Int!){
