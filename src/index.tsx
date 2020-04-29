@@ -8,7 +8,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const client_dev = new ApolloClient({
-  uri: 'localhost:8000/graphql/',
+  uri: 'http://localhost:8000/graphql/',
 })
 
 const client_prod = new ApolloClient({
@@ -16,6 +16,7 @@ const client_prod = new ApolloClient({
 })
 
 const client = process.env.NODE_ENV === 'production' ? client_prod : client_dev;
+// const client = client_dev
 
 ReactDOM.render(
   <ApolloProvider client = {client}>
