@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 import graphene
 from graphene_django import DjangoObjectType
 import graphql_jwt
+from graphql_jwt.decorators import login_required
 
 
 class UserType(DjangoObjectType):

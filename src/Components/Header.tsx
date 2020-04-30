@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
+import {AUTH_TOKEN} from '../constants'
 import {
   Collapse,
   Navbar,
@@ -13,10 +14,11 @@ import {
   NavbarText
 } from 'reactstrap';
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = (props:any) => {
+  const [isOpen, setIsOpen] = useState(false)
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen)
+  const authToken = localStorage.getItem(AUTH_TOKEN)
 
   return (
     <div>
@@ -40,7 +42,23 @@ const Header = () => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  Reset
+                <div className="flex flex-fixed">
+                  {authToken ? (
+                    <div
+                      className="ml1 pointer black"
+                      onClick={() => {
+                        localStorage.removeItem(AUTH_TOKEN)
+                        props.history.push(`/`)
+                      }}
+                    >
+                      logout
+                    </div>
+                  ) : (
+                    <Link to="/login" className="ml1 no-underline black">
+                      login
+                    </Link>
+                  )}
+                </div>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

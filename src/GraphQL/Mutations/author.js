@@ -1,4 +1,3 @@
-
 import {gql} from 'apollo-boost'
 
 const CREATE_AUTHOR = gql`
@@ -28,4 +27,8 @@ mutation ($id:Int!, $email:String, $lastName:String, $firstName:String){
       }    
     }
   }`
+
+
+
+
 export {CREATE_AUTHOR, REMOVE_AUTHOR, UPDATE_AUTHOR}

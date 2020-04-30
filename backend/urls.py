@@ -19,6 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 from django.views.generic import TemplateView
 from .views import index
+from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [

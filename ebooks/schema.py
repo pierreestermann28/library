@@ -2,6 +2,7 @@ import graphene
 import graphql_jwt
 from graphene_django import DjangoObjectType
 from .models import Books, Author
+from graphql_jwt.decorators import login_required
 import re
 
 regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
@@ -137,6 +138,7 @@ class Query(graphene.ObjectType):
     def resolve_books(self, info, **kwargs):
         return Books.objects.all()
 
+    @login_required
     def resolve_authors(self, info, **kwargs):
         return Author.objects.all()
 

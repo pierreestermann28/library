@@ -4,6 +4,7 @@ import Header from './Components/Header'
 import Authors from './pages/Authors'
 import {Switch, Route} from 'react-router-dom'
 import Home from './pages/Home'
+import Login from './Components/Login'
 
 function App() {
   
@@ -16,6 +17,9 @@ function App() {
         </Route>
         <Route path="/authors">
           <Authors/>
+        </Route>
+        <Route path="/login">
+          <Login/>
         </Route>
       </Switch>
     </div>
