@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker'
@@ -19,11 +20,13 @@ const client = process.env.NODE_ENV === 'production' ? client_prod : client_dev;
 // const client = client_dev
 
 ReactDOM.render(
-  <ApolloProvider client = {client}>
-    <React.StrictMode>
-     <App />
-    </React.StrictMode>
-  </ApolloProvider>
+  <Router>
+    <ApolloProvider client = {client}>
+      <React.StrictMode>
+      <App />
+      </React.StrictMode>
+    </ApolloProvider>
+  </Router>
   ,
   document.getElementById('root')
 )

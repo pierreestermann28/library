@@ -1,38 +1,13 @@
 import React, {useState} from 'react'
 import '../Styles/author.css'
-import {Button,Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input} from 'reactstrap'
+import {Button,Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input} from 'reactstrap'
 import { AvForm, AvField } from 'availity-reactstrap-validation'
 import {useMutation} from '@apollo/react-hooks'
-import {gql} from 'apollo-boost'
+import {REMOVE_AUTHOR, UPDATE_AUTHOR} from '../GraphQL/Mutations/author'
+import {READ_AUTHORS} from '../GraphQL/Queries/author'
 
-const REMOVE_AUTHOR = gql`
-    mutation ($id:Int!){
-        deleteAuthor(id: $id){
-        ok
-        }
-    }
-`
 
-const READ_AUTHORS = gql`
-{
-  authors{
-    id
-    firstName
-    lastName
-    email
-  }
-}`
 
-const UPDATE_AUTHOR = gql`
-mutation ($id:Int!, $email:String, $lastName:String, $firstName:String){
-    updateAuthor (id: $id, email: $email, lastName: $lastName, firstName: $firstName) {
-          author {
-        email
-        lastName
-        firstName
-      }    
-    }
-  }`
 
 interface AuthorProps {
     key: string,
@@ -75,7 +50,6 @@ function Author(props : AuthorProps) {
     }
 
     const handleClick = () => {
-        console.log(props.id)
         updateAuthor({
             variables : {
                 id: props.id,

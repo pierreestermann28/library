@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 import {
   Collapse,
   Navbar,
@@ -30,7 +31,9 @@ const Header = () => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Author
+                  <Link to="/authors">
+                    Author
+                  </Link>
                 </DropdownItem>
                 <DropdownItem>
                   Book
@@ -42,7 +45,12 @@ const Header = () => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText>A simple CRUD app</NavbarText>
+          <NavbarText>
+            
+              <Link to="/">
+                A simple CRUD app
+              </Link>
+            </NavbarText>
         </Collapse>
       </Navbar>
     </div>

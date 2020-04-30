@@ -1,22 +1,24 @@
 import React from 'react'
 import './App.css'
-import CreateAuthor from './Components/CreateAuthor'
-import DisplayAuthor from './Components/DisplayAuthor'
-import Header from './Components/Header';
-
-
-
- 
-  
+import Header from './Components/Header'
+import Authors from './pages/Authors'
+import {Switch, Route} from 'react-router-dom'
+import Home from './pages/Home'
 
 function App() {
   
   return (
-    <React.Fragment>
+    <div>
       <Header/>
-      <CreateAuthor/>
-      <DisplayAuthor />
-    </React.Fragment>
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route path="/authors">
+          <Authors/>
+        </Route>
+      </Switch>
+    </div>
   );
 }
 

@@ -1,31 +1,13 @@
 import React, { useState } from 'react'
 import '../Styles/createauthor.css'
 import {useMutation} from '@apollo/react-hooks'
-import {gql} from 'apollo-boost'
 import { AvForm, AvField } from 'availity-reactstrap-validation'
 import {Container, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input} from 'reactstrap'
+import {CREATE_AUTHOR} from '../GraphQL/Mutations/author'
+import {READ_AUTHORS} from '../GraphQL/Queries/author'
 
-const CREATE_AUTHOR = gql`
-    mutation ($firstName: String!, $lastName: String!, $email: String!){
-        createAuthor(firstName: $firstName, lastName: $lastName, email: $email) {
-            author {
-                id
-                lastName
-            }
-        }
-    }
-    `
 
-const READ_AUTHORS = gql`
-    {
-      authors{
-        id
-        firstName
-        lastName
-        email
-      }
-    }`
-    
+
 
 
 function CreateAuthor() {

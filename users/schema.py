@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
 import graphene
 from graphene_django import DjangoObjectType
-
-
+import graphql_jwt
 
 
 class UserType(DjangoObjectType):
@@ -11,12 +10,21 @@ class UserType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
+    me = graphene.Field(UserType)
     users = graphene.List(UserType)
 
     def resolve_users(self, info):
         return get_user_model().objects.all()
 
-class CreateUser(graphene.Mutation): 
+    def resolve_me(self, info):
+        user = info.context.user
+        if user.is_anonymous:
+            raise Exception('Not logged in!')
+
+        return user
+
+
+class CreateUser(graphene.Mutation):
     user = graphene.Field(UserType)
 
     class Arguments:
@@ -37,3 +45,6 @@ class CreateUser(graphene.Mutation):
 
 class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()

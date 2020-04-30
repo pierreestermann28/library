@@ -1,21 +1,12 @@
 import React from 'react'
 import {useQuery} from '@apollo/react-hooks'
-import {gql} from 'apollo-boost'
-import {Spinner, Button} from 'reactstrap'
+import {Spinner} from 'reactstrap'
 import Author from './Author'
-import {Table, Container, Row, Col} from 'reactstrap'
+import {Table, Container} from 'reactstrap'
 import '../Styles/displayauthor.css'
+import {READ_AUTHORS} from '../GraphQL/Queries/author'
 
 
-const READ_AUTHORS = gql`
-{
-  authors{
-    id
-    firstName
-    lastName
-    email
-  }
-}`
 
 function DisplayAuthor() {
 
