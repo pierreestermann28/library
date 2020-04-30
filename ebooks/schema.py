@@ -138,7 +138,6 @@ class Query(graphene.ObjectType):
     def resolve_books(self, info, **kwargs):
         return Books.objects.all()
 
-    @login_required
     def resolve_authors(self, info, **kwargs):
         return Author.objects.all()
 
