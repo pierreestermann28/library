@@ -24,7 +24,7 @@ mccabe==0.6.1
 promise==2.3
 psycopg2==2.8.5
 pycodestyle==2.5.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.5.0
 python-dotenv==0.13.0
 pytz==2019.3
